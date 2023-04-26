@@ -1,0 +1,8 @@
+name: Reusable Workflow Calling
+
+on:
+  workflow_dispatch
+
+jobs:
+  ResuableWorkflowCall:
+        uses: ./Actions_Practice_New/.github/workflows/reusableworkflow.yml@main
