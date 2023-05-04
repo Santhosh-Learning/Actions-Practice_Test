@@ -4,5 +4,5 @@ on: workflow_dispatch
 jobs:
   my_job:
       uses: Santhosh-Learning/Actions_Practice_New/.github/workflows/calledworkflow.yml@main
-        with:
-          my_variable: 'hello world, This is Santhosh
+      with:
+        my_variable: 'hello world, This is Santhosh
