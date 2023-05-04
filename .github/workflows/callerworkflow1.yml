@@ -1,0 +1,19 @@
+name: Caller Workflow for learning
+
+on:
+  workflow_dispatch
+
+jobs:
+  create-file:
+    runs-on: ubuntu-latest
+    outputs:
+      file-name: ${{ steps.create-file.outputs.file-name }}
+    steps:
+      - name: Create file
+        id: create-file
+        run: echo "This is some text" > my-file.txt
+      - name: Set output value
+        run: echo "::set-output name=file-name::my-file.txt"
+
+  display-file:
+    uses: Santhosh-Learning/Actions_Practice_New/.github/workflows/calledworkflow1.yml@main
