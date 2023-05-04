@@ -1,0 +1,16 @@
+name: My Caller Workflow
+
+on: workflow_dispatch
+jobs:
+  my_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call reusable workflow
+        id: my_workflow
+        uses: Santhosh-Learning/Actions_Practice_New/.github/workflows/reusable-workflow.yml
+        with:
+          my_variable: 'hello world, This is Santhosh'
+
+      - name: Display output from called workflow
+        run: |
+          echo "The reusable workflow output is ${{ steps.my_workflow.outputs.my_variable }}"
