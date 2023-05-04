@@ -6,5 +6,5 @@ jobs:
       uses: Santhosh-Learning/Actions_Practice_New/.github/workflows/calledworkflow.yml@main
       with:
         my_variable: 'hello world, This is Santhosh'
-        num1: '10'
-        num2: '6'
+        num1: 10
+        num2: 6
