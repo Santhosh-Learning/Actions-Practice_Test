@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Call reusable workflow
         id: my_workflow
-        uses: Santhosh-Learning/Actions_Practice_New/.github/workflows/calledworkflow.yml
+        uses: Santhosh-Learning/Actions_Practice_New/.github/workflows/calledworkflow.yml@main
         with:
           my_variable: 'hello world, This is Santhosh'
 
