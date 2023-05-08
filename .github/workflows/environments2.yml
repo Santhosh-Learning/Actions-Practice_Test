@@ -23,6 +23,15 @@ jobs:
           OUTPUT1: ${{needs.job1.outputs.output1}}
           OUTPUT2: ${{needs.job1.outputs.output2}}
         run: echo "$OUTPUT1 $OUTPUT2"
-      - name: Failure Condition
-        if: ${{ needs.job1.outputs.output1 == 'world' }}
-        run: echo "working as expected"
+      - name: Output1 Success
+        if: ${{ needs.job1.outputs.output1 == 'hello' }}
+        run: echo "Output1 success"
+      - name: Output1 Failure
+        if: ${{ needs.job1.outputs.output1 != 'hello' }}
+        run: echo "Output1 failure"
+      - name: Output2 Success
+        if: ${{ needs.job1.outputs.output2 == 'world' }}
+        run: echo "Output2 success"
+      - name: Output2 Failure
+        if: ${{ needs.job1.outputs.output2 != 'world' }}
+        run: echo "Output2 failure"
