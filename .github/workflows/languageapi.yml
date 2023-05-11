@@ -18,7 +18,7 @@ jobs:
       - name: Language api call 2
         id: language2
         run: |
-          echo lang=$(curl --location 'https://api.github.com/repos/santhosh162000/react-node-cicd/languages' --header 'Accept: application/vnd.github+json' --header 'Authorization: Bearer ${{ secrets.ORG_TOKEN_1 }}' | jq 'to_entries | max_by(.value) | .key') >> $GITHUB_OUTPUT
+          echo lang=$(curl --location 'https://api.github.com/repos/santhosh162000/fullphpcrud/languages' --header 'Accept: application/vnd.github+json' --header 'Authorization: Bearer ${{ secrets.ORG_TOKEN_1 }}' | jq 'to_entries | max_by(.value) | .key') >> $GITHUB_OUTPUT
         shell: bash
 
   job2:
