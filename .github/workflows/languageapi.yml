@@ -33,11 +33,11 @@ jobs:
         if: ${{ needs.job1.outputs.output1 == '"JavaScript"' }}
         run: echo "Language one is JavaScript"
       - name: Checking first repo language
-        if: ${{ needs.job1.outputs.output1 != '"PHP"' }}
+        if: ${{ needs.job1.outputs.output1 == '"PHP"' }}
         run: echo "Language one is PHP"
       - name: Checking second repo language
         if: ${{ needs.job1.outputs.output2 == '"JavaScript"' }}
         run: echo "Language two is JavaScript"
       - name: Checking second repo language
-        if: ${{ needs.job1.outputs.output2 != '"PHP"' }}
+        if: ${{ needs.job1.outputs.output2 == '"PHP"' }}
         run: echo "Language two is PHP"
