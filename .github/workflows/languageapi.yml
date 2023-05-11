@@ -29,15 +29,15 @@ jobs:
           OUTPUT1: ${{needs.job1.outputs.output1}}
           OUTPUT2: ${{needs.job1.outputs.output2}}
         run: echo "$OUTPUT1 $OUTPUT2"
-      # - name: Output1 Success
-      #   if: ${{ needs.job1.outputs.output1 == 'hello' }}
-      #   run: echo "Output1 success"
-      # - name: Output1 Failure
-      #   if: ${{ needs.job1.outputs.output1 != 'hello' }}
-      #   run: echo "Output1 failure"
-      # - name: Output2 Success
-      #   if: ${{ needs.job1.outputs.output2 == 'world' }}
-      #   run: echo "Output2 success"
-      # - name: Output2 Failure
-      #   if: ${{ needs.job1.outputs.output2 != 'world' }}
-      #   run: echo "Output2 failure"
+      - name: Checking first repo language
+        if: ${{ needs.job1.outputs.output1 == 'JavaScript' }}
+        run: echo "Language one is JavaScript"
+      - name: Checking first repo language
+        if: ${{ needs.job1.outputs.output1 != 'PHP' }}
+        run: echo "Language one is PHP"
+      - name: Checking second repo language
+        if: ${{ needs.job1.outputs.output2 == 'JavaScript' }}
+        run: echo "Language two is JavaScript"
+      - name: Checking second repo language
+        if: ${{ needs.job1.outputs.output2 != 'PHP' }}
+        run: echo "Language two is PHP"
