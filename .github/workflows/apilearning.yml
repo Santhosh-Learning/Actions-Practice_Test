@@ -6,8 +6,6 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
-    outputs:
-      output: ${{ steps.test.outputs.contributor }}
     steps:
       - name: Contributor api call 1
         id: test
