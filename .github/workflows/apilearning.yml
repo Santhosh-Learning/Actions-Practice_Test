@@ -15,6 +15,6 @@ jobs:
           url="https://api.github.com/repos/santhosh16200/react-node-cicd/branches"
           response=$(curl -s "$url")
 
-          branch_names=$(echo "$response" | jq -r '.[].name')
+          branch_names=$(echo "$response" | grep -oP '(?<="name": ")[^"]+')
 
           echo "$branch_names"
