@@ -27,10 +27,12 @@ jobs:
 
           if [[ $First_Repo_Lang == "JavaScript" ]]; then
             echo "Language one is JavaScript"
-          if [[ $First_Repo_Lang == "PHP" ]]; then
+          elif [[ $First_Repo_Lang == "PHP" ]]; then
             echo "Language one is PHP"
+          fi
+
           if [[ $Second_Repo_Lang == "JavaScript" ]]; then
             echo "Language two is JavaScript"
-          if [[ $Second_Repo_Lang == "PHP" ]]; then
+          elif [[ $Second_Repo_Lang == "PHP" ]]; then
             echo "Language two is PHP"
           fi  
