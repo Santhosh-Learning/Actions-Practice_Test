@@ -19,8 +19,17 @@ jobs:
         shell: bash
       - name: Check Languages
         run: |
-          OUTPUT1="${{ env.lang1 }}"
-          OUTPUT2="${{ env.lang2 }}"
+          First_Repo_Lang="${{ env.lang1 }}"
+          Second_Repo_Lang="${{ env.lang2 }}"
 
-          echo "Branches in santhosh162000/react-node-cicd: $OUTPUT1"
-          echo "Branches in santhosh162000/fullphpcrud: $OUTPUT2"
+          echo "Branches in santhosh162000/react-node-cicd: $First_Repo_Lang"
+          echo "Branches in santhosh162000/fullphpcrud: $Second_Repo_Lang"
+
+          if [[ $First_Repo_Lang == "JavaScript" ]]; then
+            echo "Language one is JavaScript"
+          if [[ $First_Repo_Lang == "PHP" ]]; then
+            echo "Language one is PHP"
+          if [[ $Second_Repo_Lang == "JavaScript" ]]; then
+            echo "Language two is JavaScript"
+          if [[ $Second_Repo_Lang == "PHP" ]]; then
+            echo "Language two is PHP"
