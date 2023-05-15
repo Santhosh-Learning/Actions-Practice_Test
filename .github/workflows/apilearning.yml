@@ -22,8 +22,8 @@ jobs:
           First_Repo_Lang="${{ env.lang1 }}"
           Second_Repo_Lang="${{ env.lang2 }}"
 
-          echo "Branches in santhosh162000/react-node-cicd: $First_Repo_Lang"
-          echo "Branches in santhosh162000/fullphpcrud: $Second_Repo_Lang"
+          echo "Language in santhosh162000/react-node-cicd: $First_Repo_Lang"
+          echo "Language in santhosh162000/fullphpcrud: $Second_Repo_Lang"
 
           if [[ $First_Repo_Lang == "JavaScript" ]]; then
             echo "Language one is JavaScript"
