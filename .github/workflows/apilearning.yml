@@ -12,6 +12,7 @@ jobs:
       - name: Contributor api call 1
         id: test
         run: |
+          #!/bin/bashz
           url="https://api.github.com/repos/santhosh16200/react-node-cicd/branches"
           response=$(curl -s "$url")
 
