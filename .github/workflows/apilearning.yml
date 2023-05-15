@@ -1,0 +1,24 @@
+name: Learning Github API
+
+on:
+  workflow_dispatch
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      output: ${{ steps.test.outputs.contributor }}
+    steps:
+      - name: Contributor api call 1
+        id: test
+        run: |
+          echo contributor=$(curl --location 'https://api.github.com/repos/santhosh162000/react-node-cicd/contributors' --header 'Accept: application/vnd.github+json' --header 'Authorization: Bearer ${{ secrets.ORG_TOKEN_1 }}' | jq 'to_entries | max_by(.value) | .key') >> $GITHUB_OUTPUT
+        shell: bash
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - env:
+          OUTPUT: ${{needs.job1.outputs.output}}
+        run: echo "$OUTPUT"
