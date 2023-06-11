@@ -1,26 +1,22 @@
-name: Use Environment Variables
+name: Second Workflow
 on:
   workflow_dispatch
 
 jobs:
-  use-env:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Download artifact
-        uses: actions/download-artifact@v2
+      - name: Download Cached Environment Variables
+        uses: actions/cache@v2
         with:
-          name: env-vars
-          path: env-vars.txt
+          key: env-vars-${{ github.sha }}
+          path: $GITHUB_ENV
 
-      - name: Load environment variables
+      - name: Use Environment Variables
         run: |
-          source env-vars/env-vars.txt
-
-      - name: Print environment variables
-        run: |
-          echo $VAR1
-          echo $VAR2
+          echo "VAR1=$VAR1"
+          echo "VAR2=$VAR2"
