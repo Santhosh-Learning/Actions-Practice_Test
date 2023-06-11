@@ -1,22 +1,16 @@
 name: First Workflow
 on:
-  workflow_dispatch
+  fworkflow_dispatch
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Set Output Value
+        run: echo "Hello, World!" > output.txt
 
-      - name: Set Environment Variables
-        run: |
-          echo "VAR1=value1" >> $GITHUB_ENV
-          echo "VAR2=value2" >> $GITHUB_ENV
-
-      - name: Cache Environment Variables
-        uses: actions/cache@v2
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v2
         with:
-          key: env-vars-${{ github.sha }}
-          path: $GITHUB_ENV
+          name: workflow-output
+          path: output.txt

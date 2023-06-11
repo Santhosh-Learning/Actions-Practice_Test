@@ -3,20 +3,14 @@ on:
   workflow_dispatch
 
 jobs:
-  build:
+  consume:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Download Cached Environment Variables
-        uses: actions/cache@v2
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
         with:
-          key: env-vars-${{ github.sha }}
-          path: $GITHUB_ENV
+          name: workflow-output
 
-      - name: Use Environment Variables
+      - name: Read Output Value
         run: |
-          echo "VAR1=$VAR1"
-          echo "VAR2=$VAR2"
+          cat workflow-output/output.txt
