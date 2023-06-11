@@ -1,6 +1,6 @@
 name: First Workflow
 on:
-  fworkflow_dispatch
+  workflow_dispatch
 
 jobs:
   build:
