@@ -1,0 +1,19 @@
+name: Set and Cache Variables
+
+on:
+  workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set Environment Variables
+        run: echo "::set-env name=VAR1::value1"
+             echo "::set-env name=VAR2::value2"
+
+      - name: Cache Variables
+        uses: actions/cache@v2
+        with:
+          path: ~/.env
+          key: ${{ runner.os }}-env-${{ github.sha }}
