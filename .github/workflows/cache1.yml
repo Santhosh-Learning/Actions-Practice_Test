@@ -14,9 +14,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: env-vars
+          path: env-vars
 
       - name: Load environment variables
-        run: source ${{ github.workspace }}/$ARTIFACT_PATH
+        run: |
+          source env-vars/env-vars.txt
 
       - name: Print environment variables
         run: |

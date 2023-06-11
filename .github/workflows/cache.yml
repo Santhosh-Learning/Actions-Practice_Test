@@ -9,11 +9,11 @@ jobs:
     steps:
       - name: Set environment variables
         run: |
-          echo "VAR1=value1" >> $GITHUB_ENV
-          echo "VAR2=value2" >> $GITHUB_ENV
+          echo "VAR1=value1" >> env-vars.txt
+          echo "VAR2=value2" >> env-vars.txt
 
       - name: Publish artifact
         uses: actions/upload-artifact@v2
         with:
           name: env-vars
-          path: $GITHUB_ENV
+          path: env-vars.txt
