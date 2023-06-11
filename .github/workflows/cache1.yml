@@ -1,20 +1,24 @@
-name: Use Cached Variables
-
+name: Use Environment Variables
 on:
   workflow_dispatch
 
 jobs:
-  build:
+  use-env:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Restore Cached Variables
-        uses: actions/cache@v2
-        with:
-          path: ~/.env
-          key: ${{ runner.os }}-env-${{ github.sha }}
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      - name: Use Cached Variables
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: env-vars
+
+      - name: Load environment variables
+        run: source ${{ github.workspace }}/$ARTIFACT_PATH
+
+      - name: Print environment variables
         run: |
-          echo "VAR1=$VAR1"
-          echo "VAR2=$VAR2"
+          echo $VAR1
+          echo $VAR2
