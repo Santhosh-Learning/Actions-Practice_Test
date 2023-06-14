@@ -2,4 +2,4 @@
 
 Checking Discord webhook
 
-Testing precommit git hook
+Testing precommit git hooks
