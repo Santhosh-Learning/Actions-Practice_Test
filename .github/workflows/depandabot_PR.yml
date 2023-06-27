@@ -7,7 +7,7 @@ permissions:
   pull-requests: write
   issues: write
   repository-projects: write
-
+  
 jobs:
   dependabot:
     runs-on: ubuntu-latest
@@ -31,4 +31,4 @@ jobs:
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.PR_MERGE}}    
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}    
