@@ -14,5 +14,4 @@ jobs:
           commit-message: Auto-generated pull request
           title: Bot changes
           branch: dependencies-bot
-          head: dependencies-bot
           base: main
