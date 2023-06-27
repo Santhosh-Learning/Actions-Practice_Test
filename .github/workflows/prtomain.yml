@@ -7,11 +7,11 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v2
-      - name: Create pull request
-        uses: peter-evans/create-pull-request@v3.10.1
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         with:
-          token: ${{ secrets.GH_TOKEN }}
-          commit-message: Auto-generated pull request
-          title: Bot changes
-          branch: dependencies-bot
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Merge bot branch into main
           base: main
+          title: Merge bot branch into main
+          body: This pull request merges the changes from the bot branch into the main branch.
