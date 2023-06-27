@@ -1,0 +1,22 @@
+{
+  "name": "actions-practice-test",
+  "version": "1.0.0",
+  "description": "Testing depandabot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santhosh-Learning/Actions-Practice_Test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Santhosh-Learning/Actions-Practice_Test/issues"
+  },
+  "homepage": "https://github.com/Santhosh-Learning/Actions-Practice_Test#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
