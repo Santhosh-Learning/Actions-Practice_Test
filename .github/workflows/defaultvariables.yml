@@ -1,6 +1,6 @@
 name: default-environment-variables
 
-on: push
+on: workflow_dispatch
 
 jobs:
   sample-job:
