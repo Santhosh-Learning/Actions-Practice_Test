@@ -10,7 +10,7 @@ jobs:
           echo "CACHE_VAR_2=value_2" >> .env
       - name: Cache environment variables
         uses: actions/cache@v2
-        env:
+        with:
           key: my-cache
           # The directory where the cache files will be stored
           CACHE_PATH: ./

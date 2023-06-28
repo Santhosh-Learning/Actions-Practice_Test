@@ -6,7 +6,7 @@ jobs:
     steps:
       - name: Pull cached environment variables
         uses: actions/cache@v2
-        env:
+        with:
           key: my-cache
           # The directory where the cache files will be stored
           CACHE_PATH: ./
