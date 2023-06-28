@@ -6,8 +6,8 @@ jobs:
     steps:
       - name: Set environment variables
         run: |
-          echo "CACHE_VAR_1=value_1" >> .env
-          echo "CACHE_VAR_2=value_2" >> .env
+          echo "CACHE_VAR_1=value_1" >> $GITHUB_ENV
+          echo "CACHE_VAR_2=value_2" >> $GITHUB_ENV
       - name: Cache environment variables
         uses: actions/cache@v2
         with:
