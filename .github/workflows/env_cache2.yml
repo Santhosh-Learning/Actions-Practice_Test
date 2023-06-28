@@ -9,7 +9,7 @@ jobs:
         with:
           key: my-cache
           # The directory where the cache files will be stored
-          CACHE_PATH: ./
+          path: ./
       - name: Print cached environment variables
         run: |
           echo "CACHE_VAR_1=${{ env.CACHE_VAR_1 }}"
