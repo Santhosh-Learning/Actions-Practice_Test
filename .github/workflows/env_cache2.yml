@@ -1,5 +1,5 @@
 name: Pull cached environment variables
-on: push
+on: workflow_dispatch
 jobs:
   pull:
     runs-on: ubuntu-latest
@@ -7,7 +7,7 @@ jobs:
       - name: Pull cached environment variables
         uses: actions/cache@v2
         env:
-          CACHE_KEY: ${{ runner.os }}-cache
+          CACHE_KEY: my-cache
           # The directory where the cache files will be stored
           CACHE_PATH: ./
       - name: Print cached environment variables

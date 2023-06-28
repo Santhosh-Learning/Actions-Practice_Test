@@ -1,5 +1,5 @@
 name: Cache environment variables
-on: push
+on: workflow_dispatch
 jobs:
   cache:
     runs-on: ubuntu-latest
@@ -11,6 +11,6 @@ jobs:
       - name: Cache environment variables
         uses: actions/cache@v2
         env:
-          CACHE_KEY: ${{ runner.os }}-cache
+          CACHE_KEY: my-cache
           # The directory where the cache files will be stored
           CACHE_PATH: ./
