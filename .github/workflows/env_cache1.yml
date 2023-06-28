@@ -11,6 +11,6 @@ jobs:
       - name: Cache environment variables
         uses: actions/cache@v2
         env:
-          CACHE_KEY: my-cache
+          key: my-cache
           # The directory where the cache files will be stored
           CACHE_PATH: ./
