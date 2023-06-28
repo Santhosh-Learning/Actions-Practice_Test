@@ -10,7 +10,12 @@ jobs:
           key: my-cache1
           # The directory where the cache files will be stored
           path: ./
+  print:
+    runs-on: ubuntu-latest
+    needs: pull
+    steps:
       - name: Print cached environment variables
         run: |
           echo "CACHE_VAR_1=${{ env.CACHE_VAR_1 }}"
-          echo "CACHE_VAR_2=${{ env.CACHE_VAR_2 }}"
+          echo "CACHE_VAR_2=${{ env.CACHE_VAR_2 }}"     
+      
