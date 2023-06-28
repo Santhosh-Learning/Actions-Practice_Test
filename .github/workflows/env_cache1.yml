@@ -1,0 +1,16 @@
+name: Cache environment variables
+on: push
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set environment variables
+        run: |
+          echo "CACHE_VAR_1=value_1" >> .env
+          echo "CACHE_VAR_2=value_2" >> .env
+      - name: Cache environment variables
+        uses: actions/cache@v2
+        env:
+          CACHE_KEY: ${{ runner.os }}-cache
+          # The directory where the cache files will be stored
+          CACHE_PATH: ./

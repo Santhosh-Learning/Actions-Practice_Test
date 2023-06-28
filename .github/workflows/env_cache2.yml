@@ -1,0 +1,16 @@
+name: Pull cached environment variables
+on: push
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull cached environment variables
+        uses: actions/cache@v2
+        env:
+          CACHE_KEY: ${{ runner.os }}-cache
+          # The directory where the cache files will be stored
+          CACHE_PATH: ./
+      - name: Print cached environment variables
+        run: |
+          echo "CACHE_VAR_1=${{ env.CACHE_VAR_1 }}"
+          echo "CACHE_VAR_2=${{ env.CACHE_VAR_2 }}"
