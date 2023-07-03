@@ -39,14 +39,6 @@ jobs:
           pr_author=$(echo "$response" | jq -r '.user.login')
           echo "::set-output name=pr_author::$pr_author"
 
-      - name: Approve a PR
-        if: ${{ steps.pr_details.outputs.pr_author != github.actor }}
-        run: |
-          pr_number=${{ steps.pr_number.outputs.pr_number }}
-          gh pr review --approve "$pr_number"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Enable auto-merge for Dependabot PRs
         if: ${{ steps.pr_details.outputs.pr_author != github.actor }}
         run: |
