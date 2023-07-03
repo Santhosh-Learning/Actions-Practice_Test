@@ -1,8 +1,6 @@
 name: Approve Pull Request
 on: 
-  workflow_run:
-    workflows: [Create Pull Request]
-    types: [completed]
+  workflow_dispatch
 
 permissions:
   pull-requests: write
@@ -11,21 +9,30 @@ permissions:
   contents: write
   
 jobs:
-  dependabot:
+  githubactionsbot:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
       
+      - name: Get Pull Request Number
+        id: pr
+        run: |
+          PR_NUMBER=$(curl --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            --url "${{ github.event.pull_request.url }}" \
+            --silent | jq -r '.number')
+          echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+      
       - name: Approve a PR
-        if: ${{ github.event_name == 'pull_request' }}
-        run: gh pr review --approve "$PR_URL"
+        if: github.event_name == 'pull_request'
+        run: gh pr review --approve $PR_NUMBER
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge PR
-        run: gh pr merge --auto --merge "$PR_URL"
+        if: github.event_name == 'pull_request'
+        run: gh pr merge --auto --merge $PR_NUMBER
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}    
+          PR_NUMBER: ${{ env.PR_NUMBER }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}    
