@@ -2,12 +2,7 @@ name: Approve Pull Request
 on: 
   workflow_dispatch
 
-permissions:
-  actions: write
-  pull-requests: write
-  issues: write
-  repository-projects: write
-  contents: write
+permissions: read-all|write-all
   
 jobs:
   githubactionsbot:
