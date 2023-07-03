@@ -44,29 +44,17 @@ jobs:
           echo "::set-output name=pr_author::$pr_author"
 
       - name: Approve a PR
+        if: ${{ steps.pr_details.outputs.pr_author != github.actor }}
         run: |
           pr_number=${{ steps.pr_number.outputs.pr_number }}
-          pr_author=${{ steps.pr_details.outputs.pr_author }}
-
-          # Skip approval if the PR author is the same as the workflow user/bot
-          if [[ "$pr_author" != "${{ github.actor }}" ]]; then
-            gh pr review --approve "$pr_number"
-          else
-            echo "Skipping approval as the PR author is the same as the workflow user/bot"
-          fi
+          gh pr review --approve "$pr_number"
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Enable auto-merge for Dependabot PRs
+        if: ${{ steps.pr_details.outputs.pr_author != github.actor }}
         run: |
           pr_number=${{ steps.pr_number.outputs.pr_number }}
-          pr_author=${{ steps.pr_details.outputs.pr_author }}
-
-          # Skip merge if the PR author is the same as the workflow user/bot
-          if [[ "$pr_author" != "${{ github.actor }}" ]]; then
-            gh pr merge --auto --merge "$pr_number"
-          else
-            echo "Skipping merge as the PR author is the same as the workflow user/bot"
-          fi
+          gh pr merge --auto --merge "$pr_number"
         env:
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}    
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
