@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+      
       - name: Get Recent PR Number
         id: pr_number
         run: |
@@ -29,13 +29,14 @@ jobs:
       - name: Use PR Number
         run: |
           pr_number=${{ steps.pr_number.outputs.pr_number }}
-          echo "Recent PR number: $pr_number"
+          echo "Recent PR number: $pr_number"  
 
-      - name: Check PR Author
-        id: check_author
+      - name: Get PR Details
+        id: pr_details
         run: |
+          pr_number=${{ steps.pr_number.outputs.pr_number }}
           response=$(curl -s --request GET \
-            --url "https://api.github.com/repos/${{ github.repository }}/pulls/${{ steps.pr_number.outputs.pr_number }}" \
+            --url "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_number" \
             --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
             --header "Accept: application/vnd.github.v3+json")
 
@@ -43,17 +44,29 @@ jobs:
           echo "::set-output name=pr_author::$pr_author"
 
       - name: Approve a PR
-        if: steps.check_author.outputs.pr_author != github.actor
         run: |
           pr_number=${{ steps.pr_number.outputs.pr_number }}
-          gh pr review --approve "$pr_number"
+          pr_author=${{ steps.pr_details.outputs.pr_author }}
+
+          # Skip approval if the PR author is the same as the workflow user/bot
+          if [[ "$pr_author" != "${{ github.actor }}" ]]; then
+            gh pr review --approve "$pr_number"
+          else
+            echo "Skipping approval as the PR author is the same as the workflow user/bot"
+          fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Enable auto-merge for Dependabot PRs
-        if: steps.check_author.outputs.pr_author != github.actor
         run: |
           pr_number=${{ steps.pr_number.outputs.pr_number }}
-          gh pr merge --auto --merge "$pr_number"
+          pr_author=${{ steps.pr_details.outputs.pr_author }}
+
+          # Skip merge if the PR author is the same as the workflow user/bot
+          if [[ "$pr_author" != "${{ github.actor }}" ]]; then
+            gh pr merge --auto --merge "$pr_number"
+          else
+            echo "Skipping merge as the PR author is the same as the workflow user/bot"
+          fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}      
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}    
