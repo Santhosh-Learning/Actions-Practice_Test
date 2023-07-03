@@ -29,4 +29,18 @@ jobs:
       - name: Use PR Number
         run: |
           pr_number=${{ steps.pr_number.outputs.pr_number }}
-          echo "Recent PR number: $pr_number"   
+          echo "Recent PR number: $pr_number"  
+
+      - name: Approve a PR
+        run: |
+          pr_number=${{ steps.pr_number.outputs.pr_number }}
+          gh pr review --approve "$pr_number"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Enable auto-merge for Dependabot PRs
+        run: |
+          pr_number=${{ steps.pr_number.outputs.pr_number }}
+          gh pr merge --auto --merge "$pr_number"
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}      
