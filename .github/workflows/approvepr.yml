@@ -24,14 +24,12 @@ jobs:
           echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
       
       - name: Approve a PR
-        if: github.event_name == 'pull_request'
         run: gh pr review --approve $PR_NUMBER
         env:
           PR_NUMBER: ${{ env.PR_NUMBER }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Merge PR
-        if: github.event_name == 'pull_request'
         run: gh pr merge --auto --merge $PR_NUMBER
         env:
           PR_NUMBER: ${{ env.PR_NUMBER }}
