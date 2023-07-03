@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Santhosh-Learning/Actions-Practice_Test#readme",
   "dependencies": {
+    "async": "^3.2.0",
     "axios": "^1.3.0",
     "babel-jest": "^29.5.0",
     "chromatic": "^6.19.9",

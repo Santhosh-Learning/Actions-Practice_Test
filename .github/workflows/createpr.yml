@@ -1,0 +1,24 @@
+name: Create Pull Request
+
+on:
+  push:
+    branches:
+      - dependencies-bot
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+          title: Update from dependencies-bot branch
+          body: |
+            This pull request contains updates from the dependencies-bot branch.
+            Please review and merge the changes.
