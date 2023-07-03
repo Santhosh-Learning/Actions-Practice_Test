@@ -1,9 +1,11 @@
 name: Create Pull Request
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - dependencies-bot
+      - dependencies-bot  
 
 jobs:
   create-pull-request:
