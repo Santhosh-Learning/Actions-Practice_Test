@@ -1,8 +1,8 @@
 name: Approve Pull Request
 on: 
-  pull_request:
-    types:
-      - opened
+  workflow_run:
+    workflows: [Create Pull Request]
+    types: [completed]
 
 permissions:
   pull-requests: write
