@@ -1,6 +1,9 @@
 name: Automatic Rebase - Bot branch
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  push:
+    branches:
+      - main
 jobs:
   rebase:
     name: Rebase `dependencies` with `main`
