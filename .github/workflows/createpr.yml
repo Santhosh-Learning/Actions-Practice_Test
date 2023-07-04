@@ -1,7 +1,12 @@
 name: Create Pull Request
 
 on:
-  workflow_dispatch
+  workflow_dispatch:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - dependencies-bot
 
 jobs:
   create_pr:
