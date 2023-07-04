@@ -10,8 +10,32 @@ permissions:
   contents: write
   
 jobs:
+  CI:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run CI checks
+        id: ci
+        run: |
+          add() {
+            echo $(($1 + $2))
+          }
+
+          result=$(add 5 3)
+
+          echo "Addition result: $result"
+
+          if [[ $result -ne 8 ]]; then
+            echo "::error::Addition result is not equal to 8"
+            exit 1
+          fi
+
   dependabot:
     runs-on: ubuntu-latest
+    needs: CI
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Checkout code
