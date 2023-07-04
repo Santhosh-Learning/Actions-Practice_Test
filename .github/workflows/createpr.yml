@@ -2,9 +2,9 @@ name: Create Pull Request
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - dependencies-bot
+  workflow_run:
+    workflows: [Dependabot auto-approve]
+    types: [completed]
 
 jobs:
   create_pr:

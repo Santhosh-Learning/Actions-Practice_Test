@@ -1,4 +1,4 @@
-name: Dependabot auto-approve learning
+name: Dependabot auto-approve
 on: 
   - pull_request
   - workflow_dispatch
