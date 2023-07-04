@@ -63,13 +63,7 @@ jobs:
             --header "Accept: application/vnd.github.v3+json")
 
           pr_author=$(echo "$response" | jq -r '.user.login')
-          echo "::set-output name=pr_author::$pr_author"
-
-      - name: Approve a PR
-        run: gh pr review --approve "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}    
+          echo "::set-output name=pr_author::$pr_author"   
 
       - name: Enable auto-merge for Dependabot PRs
         if: ${{ steps.pr_details.outputs.pr_author != github.actor }}
