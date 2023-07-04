@@ -17,18 +17,14 @@ jobs:
       - name: Run CI checks
         id: ci
         run: |
-          # Define a simple addition function
           add() {
             echo $(($1 + $2))
           }
 
-          # Call the addition function with two numbers
-          result=$(add 5 3)
+          result=$(add 5 4)
 
-          # Output the result of the addition
           echo "Addition result: $result"
 
-          # Fail the CI job if the result is not equal to 8
           if [[ $result -ne 8 ]]; then
             echo "::error::Addition result is not equal to 8"
             exit 1
@@ -40,7 +36,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: Get Recent PR Number
         id: pr_number
         run: |
