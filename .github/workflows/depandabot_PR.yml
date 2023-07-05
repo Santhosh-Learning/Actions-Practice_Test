@@ -12,7 +12,6 @@ permissions:
 jobs:
   get-pr-numbers:
     runs-on: ubuntu-latest
-    if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Get PR numbers
         id: pr_numbers
