@@ -37,8 +37,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: PR number checking
-        run: echo "${{ github.event.number }}"  
+      - name: Print github context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
+        run: echo "$GITHUB_CONTEXT" 
 
       - name: Get Recent PR Number
         id: pr_number
