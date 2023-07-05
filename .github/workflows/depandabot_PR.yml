@@ -10,23 +10,9 @@ permissions:
   contents: write
   
 jobs:
-  get-pr-numbers:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get PR numbers
-        id: pr_numbers
-        run: |
-          response=$(curl -s --request GET \
-            --url "https://api.github.com/repos/${{ github.repository }}/pulls" \
-            --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            --header "Accept: application/vnd.github.v3+json")
-          pr_numbers=$(echo "$response" | jq -r '.[].number')
-          echo "::set-output name=pr_numbers::$pr_numbers"
-
   CI:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
-    needs: get-pr-numbers
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -60,7 +46,7 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Approve a PR
-        if: ${{ needs.ci.outputs.ci == 'success' }}
+        if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
