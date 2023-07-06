@@ -8,4 +8,12 @@ jobs:
         my_variable: 'Hello world, This is Santhosh Murugesan'
         num1: 10
         num2: 6
+
+  second_job:
+    needs: my_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 2
+        run: |
+          echo "Output from Job 1: ${{ needs.my_job.outputs.output1 }}"      
         
