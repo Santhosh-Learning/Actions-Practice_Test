@@ -1,0 +1,13 @@
+name: My Caller Workflow
+
+on: workflow_dispatch
+jobs:
+  my_job:
+      uses: Santhosh-Learning/Workflows_org/.github/workflows/test.yml@main
+      with:
+        my_variable: 'Hello world, This is Santhosh Murugesan'
+        num1: 10
+        num2: 6
+        FILENAME1: 'Santhosh'
+        FILENAME2: 'Murugesan'
+        

@@ -16,4 +16,4 @@ jobs:
         run: echo "::set-output name=file-name::my-file.txt"
 
   display-file:
-    uses: Santhosh-Learning/Actions_Practice_New/.github/workflows/calledworkflow1.yml@main
+    uses: Santhosh-Learning/Actions_Practice_New/.github/workflows/calledworkflow1.yml@mainc
