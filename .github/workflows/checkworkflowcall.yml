@@ -1,4 +1,4 @@
-name: My Caller Workflow
+name: Workflow check from Workflows_org
 
 on: workflow_dispatch
 jobs:
