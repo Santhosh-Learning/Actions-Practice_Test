@@ -8,6 +8,4 @@ jobs:
         my_variable: 'Hello world, This is Santhosh Murugesan'
         num1: 10
         num2: 6
-        FILENAME1: 'Santhosh'
-        FILENAME2: 'Murugesan'
         
