@@ -5,7 +5,6 @@ jobs:
   my_job:
       uses: Santhosh-Learning/Workflows/.github/workflows/test.yml@main
       with:
-        my_variable: 'Hello world, This is Santhosh Murugesan'
         num1: 10
         num2: 6
 
