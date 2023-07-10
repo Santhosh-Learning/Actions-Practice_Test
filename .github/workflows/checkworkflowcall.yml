@@ -13,7 +13,11 @@ jobs:
     needs: my_job
     runs-on: ubuntu-latest
     steps:
-      - name: Step 2
+      - name: Getting output from reusable workflow 1
         run: |
-          echo "Output from Job 1: ${{ needs.my_job.outputs.firstword }}"      
+          echo "Output from Job 1 string: ${{ needs.my_job.outputs.firstword }}"    
+
+      - name: Getting output from reusable workflow 2
+        run: |
+          echo "Output from Job 1 value: ${{ needs.my_job.outputs.firstvalue }}"        
         
