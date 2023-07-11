@@ -2,5 +2,5 @@
 
 Checking Discord webhook
 
-Testing precommit git hooks.
+Testing precommit git hooks
 password: mysecretpassword
