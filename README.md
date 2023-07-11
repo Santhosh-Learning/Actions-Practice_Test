@@ -3,4 +3,4 @@
 Checking Discord webhook.
 
 Testing precommit git hooks.
-password: words
+password: santhosh
