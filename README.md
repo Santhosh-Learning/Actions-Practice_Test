@@ -3,4 +3,4 @@
 Checking Discord webhook.
 
 Testing precommit git hooks.
-password: 123
+password: {{ secrets.GITHUB }} 
