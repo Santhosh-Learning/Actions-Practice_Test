@@ -2,8 +2,6 @@ name: API to trigger second workflow
 on:
   workflow_dispatch
 
-permissions: write-all  
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,6 +12,6 @@ jobs:
         run: |
           curl -X POST https://api.github.com/repos/Santhosh-Learning/Actions_Practice/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
-          -u ${{ secrets.GITHUB_TOKEN }} \
+          -u ${{ secrets.WORKFLOW_TOKEN }} \
           --data '{"event_type": "Trigger Workflow", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
       
